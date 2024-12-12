@@ -13,16 +13,15 @@ async function getCorrectDog() {
       }
     );
     let correctDogData = await correctDog.json();
-    console.log(correctDogData);
     let dogInfo = {
       name: correctDogData[0].breeds[0].name,
+      img: correctDogData[0].url,
     };
-    return correctDog;
+    return dogInfo;
   } catch (error) {
     console.log(error);
   }
 }
-getCorrectDog();
 /* 
 async function getIncorrectDogs() {
   let incorrectDogs = await fetch(
@@ -47,9 +46,17 @@ document.addEventListener("DOMContentLoaded", () => {
   startButton.addEventListener("click", startGame);
 });
 
-/* async function startGame() {
-  let correctDog = await getCorrectDog();
-    let correctDogPic = await correctDog[0].breeds[0].name; 
-    console.log(correctDog[0]?.breeds[0]?.name); 
-  console.log(correctDog[0]);
-} */
+async function startGame() {
+  let imgToUpdate = document.querySelector("img");
+  let correctDogObject = await getCorrectDog();
+  console.log(correctDogObject);
+
+  createButtons();
+
+  imgToUpdate.src = correctDogObject.img;
+}
+
+function createButtons() {
+  let startButton = document.getElementById("startGame");
+  startButton.remove();
+}

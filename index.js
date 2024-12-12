@@ -47,13 +47,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function startGame() {
-  let imgToUpdate = document.querySelector("img");
+  let imgToUpdate = document.querySelector(".dogImage");
+  let infoBox = document.querySelector(".infoBox");
+
   let correctDogObject = await getCorrectDog();
   console.log(correctDogObject);
 
   createButtons();
 
   imgToUpdate.src = correctDogObject.img;
+  infoBox.textContent = `Hint: ${correctDogObject.name}`;
 }
 
 function createButtons() {

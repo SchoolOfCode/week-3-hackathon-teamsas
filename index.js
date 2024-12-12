@@ -56,7 +56,11 @@ async function startGame() {
   imgToUpdate.src = correctDogObject.img;
 }
 
-function createButtons() {
+async function createButtons() {
+  let correctDogObject = await getCorrectDog();
   let startButton = document.getElementById("startGame");
   startButton.remove();
+
+  let newButton = document.createElement("button");
+  newButton.innerText = correctDogObject.name;
 }

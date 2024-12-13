@@ -74,6 +74,9 @@ async function startGame() {
 }
 
 // Fisher-Yates algorithm for shuffling arrays. Found on stackoverflow, explained by chatGPT. A bit confusing
+// mirrors elements and then flips them is my basic understanding of this function.
+// more research needs to be done here in order to fully understand it
+// ALI algorithm
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -114,10 +117,69 @@ async function createButtons(correctDogObject) {
   multipleChoiceArray.forEach((dogName) => {
     let button = document.createElement("button");
     button.innerText = dogName;
+    button.classList.add("quiz-box");
     document.querySelector(".buttonList").appendChild(button);
   });
 
   console.log(multipleChoiceArray);
+
+  // Using Ali's function and passing my own arguments
+  updateQuizBoxes(multipleChoiceArray, correctDogName);
+}
+
+/// ALI's CODE
+
+function updateQuizBoxes(options, correctAnswer) {
+  const boxes = document.querySelectorAll(".quiz-box");
+  boxes.forEach((box, index) => {
+    box.textContent = options[index];
+    box.dataset.correct = options[index] === correctAnswer;
+    box.addEventListener("click", handleAnswerClick);
+  });
+}
+
+function handleAnswerClick(event) {
+  const isCorrect = event.target.dataset.correct === "true";
+
+  const boxes = document.querySelectorAll(".quiz-box");
+  boxes.forEach((box) => box.removeEventListener("click", handleAnswerClick));
+
+  if (isCorrect) {
+    event.target.classList.add("correct");
+    alert("Correct! You guessed the right breed.");
+  } else {
+    event.target.classList.add("wrong");
+    alert("Wrong, try again!");
+  }
+
+  setTimeout(() => {
+    resetGame();
+  }, 1000);
+}
+
+function resetQuizBoxes() {
+  const boxes = document.querySelectorAll(".quiz-box");
+  boxes.forEach((box) => {
+    box.classList.remove("correct", "wrong");
+    box.style.backgroundColor = "";
+  });
+}
+
+function resetGame() {
+  let buttonList = document.querySelector(".buttonList");
+  buttonList.innerHTML = "";
+
+  let imgElement = document.querySelector("img");
+  imgElement.src = "dog_default.jpg";
+
+  if (!document.getElementById("startGame")) {
+    let startButton = document.createElement("button");
+    startButton.id = "startGame";
+    startButton.textContent = "Start Game";
+    startButton.addEventListener("click", startGame);
+    buttonList.appendChild(startButton);
+  }
+  resetQuizBoxes();
 }
 
 // CHATGPT pointers:

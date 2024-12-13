@@ -73,6 +73,15 @@ async function startGame() {
   imgToUpdate.src = correctDogObject.img;
 }
 
+// Fisher-Yates algorithm for shuffling arrays. Found on stackoverflow, explained by chatGPT. A bit confusing
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 // Logic for creating buttons and assigning dog breeds to them
 async function createButtons(correctDogObject) {
   // Declaring empty array where choices will be stored
@@ -86,21 +95,45 @@ async function createButtons(correctDogObject) {
   let startButton = document.getElementById("startGame");
   startButton.remove();
 
-  // Creating correct button
-  let newButton = document.createElement("button");
-  newButton.innerText = correctDogName;
-  document.querySelector(".buttonList").appendChild(newButton);
-
   // Getting API info for incorrect dogs
   let incorrectDogsObject = await getIncorrectDogs();
 
-  // Creating incorrect buttons, assigning values to buttons, pushing values to array
+  // Creating incorrect dog object, pushing values to array
   incorrectDogsObject.forEach((object) => {
-    let incorrectButton = document.createElement("button");
-    incorrectButton.innerText = object.name;
-    document.querySelector(".buttonList").appendChild(incorrectButton);
     multipleChoiceArray.push(object.name);
+  });
+
+  // Clear buttonList div before appending new buttons
+  let buttonList = document.querySelector(".buttonList");
+  buttonList.innerHTML = "";
+
+  // Shuffles the array
+  shuffleArray(multipleChoiceArray);
+
+  // Create and append buttons based on the shuffled array
+  multipleChoiceArray.forEach((dogName) => {
+    let button = document.createElement("button");
+    button.innerText = dogName;
+    document.querySelector(".buttonList").appendChild(button);
   });
 
   console.log(multipleChoiceArray);
 }
+
+// CHATGPT pointers:
+
+/* 
+Separation of concern - Logic for fetching data, updating the UI, and handling game flow is mixed in a few places such as the startGame function. Consider modularizing? code better.
+
+Be aware of using await inside loops, as forEach doesn't support asynchronous operations.
+Fine for smaller cases, but will struggle to scale.
+
+Error handling - Consider providing user feedback in case of error message
+
+Restart button?
+
+Hard to scale with current structure, but works well for 4 answer quizes. 
+Same principle as when I did the 1-10 algorithm problem
+
+State management - Which button is correct, which button was clicked. What happens
+in even of correct / incorrect answers. Ties in to Ali code.*/

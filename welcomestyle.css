@@ -47,7 +47,7 @@
 }
 
 .dogImage:hover {
-    opacity: 0.5;
+    opacity: 0.5; 
     border-color: #ff7f50;
 }
 
@@ -63,17 +63,17 @@
 
 .name-overlay {
     position: absolute;
-    bottom: 10px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 1rem;
     opacity: 0;
-    transition: opacity 0.3s ease;
     pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
 .image-container:hover .name-overlay {

@@ -1,6 +1,7 @@
 // Setting global variables for query parameters
 let limitParam = 3;
 let breeds = 1;
+let points = 0;
 
 // Function to fetch info of correct dog. Returns name and image URL in an object
 async function getCorrectDog() {
@@ -64,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Logic for what happens when game is started. Image updated, buttons created
 async function startGame() {
+  points = 0;
   let imgToUpdate = document.querySelector("img");
   let correctDogObject = await getCorrectDog();
   console.log(correctDogObject);
@@ -96,7 +98,10 @@ async function createButtons(correctDogObject) {
 
   // Finding start button and removing
   let startButton = document.getElementById("startGame");
-  startButton.remove();
+
+  if (startButton) {
+    startButton.remove();
+  }
 
   // Getting API info for incorrect dogs
   let incorrectDogsObject = await getIncorrectDogs();
@@ -146,15 +151,18 @@ function handleAnswerClick(event) {
 
   if (isCorrect) {
     event.target.classList.add("correct");
-    alert("Correct! You guessed the right breed.");
+    points++;
+    document.getElementById("points").innerHTML = "Points:" + points;
+    setTimeout(() => {
+      nextLevel();
+    }, 1000);
   } else {
     event.target.classList.add("wrong");
-    alert("Wrong, try again!");
+    points = 0;
+    setTimeout(() => {
+      resetGame();
+    }, 1000);
   }
-
-  setTimeout(() => {
-    resetGame();
-  }, 1000);
 }
 
 function resetQuizBoxes() {
@@ -166,12 +174,14 @@ function resetQuizBoxes() {
 }
 
 function resetGame() {
+  document.getElementById("points").innerHTML = "Points: " + points;
   let buttonList = document.querySelector(".buttonList");
   buttonList.innerHTML = "";
 
   let imgElement = document.querySelector("img");
   imgElement.src = "dog_default.jpg";
 
+  // Chat GPT suggestion. Very clever way of restarting the game, by putting the start game button back with its original ID and event listener, which invokes start game again
   if (!document.getElementById("startGame")) {
     let startButton = document.createElement("button");
     startButton.id = "startGame";
@@ -180,6 +190,15 @@ function resetGame() {
     buttonList.appendChild(startButton);
   }
   resetQuizBoxes();
+}
+
+async function nextLevel() {
+  let imgToUpdate = document.querySelector("img");
+  let corredtDogObject = await getCorrectDog();
+
+  createButtons(corredtDogObject);
+
+  imgToUpdate.src = corredtDogObject.img;
 }
 
 // CHATGPT pointers:

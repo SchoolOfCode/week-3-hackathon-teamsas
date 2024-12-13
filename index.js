@@ -16,6 +16,7 @@ async function getCorrectDog() {
     let dogInfo = {
       name: correctDogData[0].breeds[0].name,
       img: correctDogData[0].url,
+      hint: correctDogData[0].breeds[0].bred_for,
     };
     return dogInfo;
   } catch (error) {
@@ -56,10 +57,13 @@ async function startGame() {
   createButtons();
 
   imgToUpdate.src = correctDogObject.img;
-  infoBox.textContent = `Hint: ${correctDogObject.name}`;
+  // infoBox.textContent = `Hint: ${correctDogObject.name}`;
+  infoBox.textContent = `Hint: ${correctDogObject.hint}`;
 }
 
 function createButtons() {
   let startButton = document.getElementById("startGame");
   startButton.remove();
 }
+
+console.log(correctDog)

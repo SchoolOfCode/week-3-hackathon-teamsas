@@ -49,7 +49,7 @@ button:hover {
   width: 500px;
   height: 350px;
   justify-content: center;
-  transition: opacity 0.3s ease; /* Smooth opacity change */
+  transition: opacity 0.3s ease;
 }
 
 
@@ -57,23 +57,22 @@ button:hover {
 
 
 .dogImage:hover {
-  opacity: 0.5; /* Dim the image when hovered */
+  opacity: 0.5;
 }
 
-/* Create the style for the info box */
 .infoBox {
   position: absolute;
-  top: 50%; /* Center the box over the image */
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px;
   border-radius: 5px;
   text-align: center;
-  display: none; /* Initially hidden */
+  display: none;
 }
 
 .dogImage:hover + .infoBox {
-  display: block; /* Show the info box when the image is hovered */
+  display: block;
 }

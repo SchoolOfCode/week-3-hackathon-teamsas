@@ -27,10 +27,6 @@ async function getCorrectDog() {
   }
 }
 
-/* async function getDogDescription(dogInfo){
-    let dogDescription = COME BACK TO THIS AND HELP SAM WITH DOGS DESCRIPTIONS
-} */
-
 // Function to fetch info of 3 incorrect dogs. Returns name in objects in reformatted array
 async function getIncorrectDogs() {
   try {
@@ -45,7 +41,6 @@ async function getIncorrectDogs() {
     );
 
     let incorrectDogsData = await incorrectDogs.json();
-
     // .map returns a new array
     let dogsInfoArray = incorrectDogsData.map((dog) => {
       return {
@@ -97,7 +92,6 @@ function shuffleArray(array) {
 async function createButtons(correctDogObject) {
   // Declaring empty array where choices will be stored
   let multipleChoiceArray = [];
-
   // Getting API info for correct dog, pushing it to array
   let correctDogName = correctDogObject.name;
   multipleChoiceArray.push(correctDogName);

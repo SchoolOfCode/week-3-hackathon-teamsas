@@ -1,0 +1,81 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.frame {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+}
+
+.title {
+    font-size: 2rem;
+    color: #333;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+}
+
+.images {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.image-container {
+    position: relative;
+    width: 180px;
+    height: 220px;
+}
+
+.dogImage {
+    width: 180px;
+    height: 220px;
+    object-fit: cover;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+    transition: opacity 0.3s ease, border-color 0.3s ease;
+}
+
+.dogImage:hover {
+    opacity: 0.5; 
+    border-color: #ff7f50;
+}
+
+.infoBox {
+    font-size: 1.2rem;
+    color: #333;
+    font-family: Arial, sans-serif;
+    word-wrap: break-word;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.name-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.image-container:hover .name-overlay {
+    opacity: 1;
+}

@@ -19,6 +19,7 @@ async function getCorrectDog() {
     let dogInfo = {
       name: correctDogData[0].breeds[0].name,
       img: correctDogData[0].url,
+      hint: correctDogData[0].breeds[0].bred_for,
     };
     return dogInfo;
   } catch (error) {
@@ -65,14 +66,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Logic for what happens when game is started. Image updated, buttons created
 async function startGame() {
+
+
+  let infoBox = document.querySelector(".infoBox");
+
+=======
   points = 0;
   let imgToUpdate = document.querySelector("img");
+
   let correctDogObject = await getCorrectDog();
   console.log(correctDogObject);
 
   createButtons(correctDogObject);
 
   imgToUpdate.src = correctDogObject.img;
+  // infoBox.textContent = `Hint: ${correctDogObject.name}`;
+  infoBox.textContent = `Hint: ${correctDogObject.hint}`;
 }
 
 // Fisher-Yates algorithm for shuffling arrays. Found on stackoverflow, explained by chatGPT. A bit confusing
@@ -131,6 +140,7 @@ async function createButtons(correctDogObject) {
   // Using Ali's function and passing my own arguments
   updateQuizBoxes(multipleChoiceArray, correctDogName);
 }
+
 
 /// ALI's CODE
 
@@ -218,3 +228,4 @@ Same principle as when I did the 1-10 algorithm problem
 
 State management - Which button is correct, which button was clicked. What happens
 in even of correct / incorrect answers. Ties in to Ali code.*/
+

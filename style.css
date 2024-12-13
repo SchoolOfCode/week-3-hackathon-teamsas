@@ -41,10 +41,15 @@ button:hover {
   background-color: orange;
 }
 
+
+
+
+
 .dogImage {
   width: 500px;
   height: 350px;
   justify-content: center;
+  transition: opacity 0.3s ease;
   margin-top: 20px;
 }
 
@@ -72,4 +77,29 @@ button:hover {
 
 .quiz-box.wrong {
   background-color: lightcoral;
+}
+
+
+
+
+
+.dogImage:hover {
+  opacity: 0.5;
+}
+
+.infoBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  display: none;
+}
+
+.dogImage:hover + .infoBox {
+  display: block;
 }

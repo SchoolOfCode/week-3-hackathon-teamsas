@@ -1,21 +1,20 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Verdana, Geneva, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #e9ecef;
+  background-color: #fff8f0;
   margin: 0;
 }
 
 .container {
   padding: 40px;
-  background-color: #fff;
+  background-color: #fffdf8;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   width: 70%;
   max-width: 600px;
-
   text-align: center;
 }
 
@@ -29,21 +28,19 @@ button {
   display: block;
   margin: 10px auto;
   padding: 10px 20px;
-  border: none;
-  background-color: orange;
-  color: white;
+  border: 2px solid orange;
+  background-color: #f7b97a;
+  color: black;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 button:hover {
   background-color: orange;
+  color: white;
+  border-color: orange;
 }
-
-
-
-
 
 .dogImage {
   width: 500px;
@@ -51,6 +48,8 @@ button:hover {
   justify-content: center;
   transition: opacity 0.3s ease;
   margin-top: 20px;
+  border: 5px solid orange;
+  border-radius: 20px;
 }
 
 .quiz-container {
@@ -63,7 +62,7 @@ button:hover {
 .quiz-box {
   width: 150px;
   height: 50px;
-  border: 1px solid #ccc;
+  border: 2px solid #fd9e4b;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,10 +77,6 @@ button:hover {
 .quiz-box.wrong {
   background-color: lightcoral;
 }
-
-
-
-
 
 .dogImage:hover {
   opacity: 0.5;

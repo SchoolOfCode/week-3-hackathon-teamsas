@@ -45,4 +45,31 @@ button:hover {
   width: 500px;
   height: 350px;
   justify-content: center;
+  margin-top: 20px;
+}
+
+.quiz-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.quiz-box {
+  width: 150px;
+  height: 50px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.quiz-box.correct {
+  background-color: lightgreen;
+}
+
+.quiz-box.wrong {
+  background-color: lightcoral;
 }
